@@ -1,0 +1,21 @@
+version: '1.0'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    ports:
+      - "27017:27017"
+    volumes:
+      - /var/lib/docker/volumes/db_container-data/_data
+    environment:
+      - POSTGRES_PASSWORD=#29GGvu2oq
+  backend:
+    image: node:20
+    container_name: backend_container
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    
+volumes:
+  db_container-data:
